@@ -12,6 +12,7 @@ import ImportWallet from '@/components/pages/ImportWallet';
 import ExportWallet from '@/components/pages/ExportWallet';
 import SettingsPage from '@/components/pages/Settings';
 import MessagePage from '@/components/pages/Message';
+import ErrorPage from '@/components/pages/Error';
 
 import { hasLoginGuard, privateWalletGuard } from './guards';
 
@@ -78,6 +79,11 @@ export default new Router({
       name: 'MessagePage',
       component: MessagePage,
       beforeEnter: multiguard([hasLoginGuard, privateWalletGuard]),
+    },
+    // Fallback for 404 error - MUST be last in routes list
+    {
+      path: '*',
+      component: ErrorPage,
     },
   ],
 });
